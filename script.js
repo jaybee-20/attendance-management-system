@@ -786,6 +786,7 @@ function updateDashboard(){
     let absent = 0;
     let late = 0;
 
+    let monthPresent = 0;
     let monthAbsent = 0;
     let monthLate = 0;
     let monthCutting = 0;
@@ -821,6 +822,10 @@ function updateDashboard(){
 
                 const status =
                 attendance[date]?.[student];
+
+                if(status === "Present"){
+                monthPresent++;
+                }
 
                 if(status === "Absent"){
                     monthAbsent++;
@@ -899,7 +904,7 @@ if(totalStudents > 0){
     document.getElementById("dashPresent").textContent = present;
     document.getElementById("dashAbsent").textContent = absent;
     document.getElementById("dashLate").textContent = late;
-
+    document.getElementById("dashMonthPresent").textContent = monthPresent;
     document.getElementById("dashMonthAbsent").textContent = monthAbsent;
     document.getElementById("dashMonthLate").textContent = monthLate;
     document.getElementById("dashMonthCutting").textContent = monthCutting;
