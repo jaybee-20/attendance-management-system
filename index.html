@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Checker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <h1>ATTENDANCE MONITORING SYSTEM</h1>
+        </header>
+<section class="card">
+
+    <h2>📊 CLASS ROOM DASHBOARD</h2>
+
+    <div class="dashboard-grid">
+
+        <div class="dash-box">
+            <h3>TODAY'S ATTENDANCE</h3>
+            <p>✅ Present: <span id="dashPresent">0</span></p>
+            <p>❌ Absent: <span id="dashAbsent">0</span></p>
+            <p>⏰ Late: <span id="dashLate">0</span></p>
+        </div>
+
+        <div class="dash-box">
+            <h3>MONTHLY ATTENDANCE</h3>
+            <p>❌ Absences: <span id="dashMonthAbsent">0</span></p>
+            <p>⏰ Late: <span id="dashMonthLate">0</span></p>
+            <p>🚶 Cutting: <span id="dashMonthCutting">0</span></p>
+        </div>
+
+        <div class="dash-box">
+            <h3>INTERVENTION </h3>
+            <p>🔴 High Risk: <span id="dashHighRisk">0</span></p>
+            <p>🟡 Monitor: <span id="dashMonitor">0</span></p>
+        </div>
+<div class="dash-box">
+    <h3>📈 ATTENDANCE RATE</h3>
+    <p>
+        <span id="attendanceRate">
+            0%
+        </span>
+    </p>
+</div>
+
+<div class="dash-box">
+    <h3>👥 NO. OF STUDENTS </h3>
+    <p>
+        Total Students:
+        <span id="totalStudents">
+            0
+        </span>
+    </p>
+</div>
+
+<div class="dash-box">
+    <h3>⚠ TOP CONCERNS</h3>
+
+    <p>
+        Most Absences:
+        <span id="topAbsent">
+            None
+        </span>
+    </p>
+
+    <p>
+        Most Late:
+        <span id="topLate">
+            None
+        </span>
+    </p>
+
+    <p>
+        Most Cutting:
+        <span id="topCutting">
+            None
+        </span>
+    </p>
+</div>
+
+    </div>
+
+</section>
+<section class="card">
+
+    <h2>💾 Backup & Restore</h2>
+
+    <button id="backupBtn">
+        💾 Backup Data
+    </button>
+
+    <button id="restoreBtn">
+        📂 Restore Data
+    </button>
+
+    <input
+        type="file"
+        id="restoreFile"
+        accept=".json"
+        style="display:none;">
+
+</section>
+<section class="card">
+        <section class="card">
+
+            <label>School Name</label>
+            <input
+                type="text"
+                id="schoolName"
+                value="Calantas National High School">
+
+            <label>Grade & Section</label>
+            <input
+                type="text"
+                id="section"
+                placeholder="Grade 8 - Rizal">
+
+            <label>Date</label>
+            <input
+                type="date"
+                id="attendanceDate">
+
+        </section>
+<section class="card">
+
+    <h2>Attendance Summary</h2>
+
+    <div class="summary-grid">
+
+        <div class="summary present">
+            <span id="presentCount">0</span>
+            <small>Present</small>
+        </div>
+
+        <div class="summary absent">
+            <span id="absentCount">0</span>
+            <small>Absent</small>
+        </div>
+
+        <div class="summary late">
+            <span id="lateCount">0</span>
+            <small>Late</small>
+        </div>
+
+        <div class="summary excused">
+            <span id="excusedCount">0</span>
+            <small>Excused</small>
+        </div>
+
+        <div class="summary cutting">
+            <span id="cuttingCount">0</span>
+            <small>Cutting</small>
+        </div>
+
+    </div>
+<button id="markAllPresentBtn">
+    ✓ Mark All Present
+</button>
+
+</section>
+    <section class="card">
+
+    <h2>Student Management</h2>
+
+    <textarea
+    id="studentInput"
+    rows="6"
+    placeholder="Paste one student name per line"></textarea>
+
+<input
+    type="text"
+    id="newStudent"
+    placeholder="Enter student name">
+
+<button id="addStudentBtn">
+    Add Student
+</button>
+
+<div class="button-group">
+
+    <button id="loadBtn">
+        Load Student List
+    </button>
+
+    <button id="clearBtn">
+        Clear List
+    </button>
+
+</div>
+
+    <input
+        type="text"
+        id="searchStudent"
+        placeholder="Search Student">
+
+</section>
+
+<section class="card">
+
+    <h2>Students</h2>
+
+    <div id="studentList"></div>
+
+</section>
+
+<section class="card">
+
+    <h2>Monthly Attendance Report</h2>
+
+    <button id="generateReportBtn">
+        Generate Monthly Report
+    </button>
+
+<button id="printReportBtn">
+    🖨 Print Monthly Report
+</button>
+
+<button id="exportExcelBtn">
+    📊 Export Excel Report
+</button>
+
+    <div id="monthlyReport"></div>
+
+</section>
+<section class="card">
+
+    <h2>⚠ Intervention Monitoring</h2>
+
+    <button id="generateInterventionBtn">
+        Generate Intervention List
+    </button>
+
+    <div id="interventionList"></div>
+
+</section>
+<section class="card">
+
+    <h2>👤 Student Profile</h2>
+
+    <select id="studentProfileSelect">
+        <option value="">
+            Select Student
+        </option>
+    </select>
+
+    <div id="studentProfile"></div>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
