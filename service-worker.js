@@ -1,12 +1,12 @@
 const CACHE_NAME = "attendance-v1";
 
 const urlsToCache = [
-    "./",
-    "./index.html",
-    "./style.css",
-    "./script.js",
-    "./manifest.json",
-    "./icon.png"
+    "/attendance-management-system/",
+    "/attendance-management-system/index.html",
+    "/attendance-management-system/style.css",
+    "/attendance-management-system/script.js",
+    "/attendance-management-system/manifest.json",
+    "/attendance-management-system/icon.png"
 ];
 
 self.addEventListener("install", event => {
