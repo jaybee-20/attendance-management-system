@@ -1551,3 +1551,21 @@ renderStudents();
 updateDashboard();
 console.log("Loaded Attendance:");
 console.log(attendance);
+if(
+    "serviceWorker" in navigator
+){
+
+    navigator
+    .serviceWorker
+    .register(
+        "service-worker.js"
+    )
+    .then(() => {
+
+        console.log(
+            "Service Worker Registered"
+        );
+
+    });
+
+}
