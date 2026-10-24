@@ -88,25 +88,7 @@
     </div>
 
 </section>
-<section class="card">
 
-    <h2>💾 Backup & Restore</h2>
-
-    <button id="backupBtn">
-        💾 Backup Data
-    </button>
-
-    <button id="restoreBtn">
-        📂 Restore Data
-    </button>
-
-    <input
-        type="file"
-        id="restoreFile"
-        accept=".json"
-        style="display:none;">
-
-</section>
 <section class="card">
         <section class="card">
 
@@ -114,13 +96,19 @@
             <input
                 type="text"
                 id="schoolName"
-                value="Calantas National High School">
+                placeholder="Enter School Name">
 
             <label>Grade & Section</label>
             <input
                 type="text"
                 id="section"
-                placeholder="Grade 8 - Rizal">
+                placeholder="Enter Grade and Section">
+
+                <label>School Year</label>
+            <input
+                type="text"
+                id="schoolYear"
+                placeholder="Enter School Year">
 
             <label>Date</label>
             <input
@@ -231,6 +219,40 @@
 </section>
 <section class="card">
 
+    <h2>📅 Monthly Absence Matrix</h2>
+
+    <input
+        type="month"
+        id="matrixMonth">
+
+    <button id="generateMatrixBtn">
+    📊 View Monthly Absence Matrix
+</button>
+
+    <div id="absenceMatrix"></div>
+
+</section>
+<section class="card">
+
+    <h2>📊 Yearly Absence Summary</h2>
+
+    <button id="generateYearlySummaryBtn">
+        📊 Generate Yearly Summary
+    </button>
+
+    <button id="printYearlySummaryBtn">
+        🖨 Print Yearly Summary
+    </button>
+
+    <button id="exportYearlySummaryBtn">
+    📊 Export Yearly Summary
+    </button>
+
+    <div id="yearlySummary"></div>
+
+</section>
+<section class="card">
+
     <h2>⚠ Intervention Monitoring</h2>
 
     <button id="generateInterventionBtn">
@@ -253,7 +275,25 @@
     <div id="studentProfile"></div>
 
 </section>
+<section class="card">
 
+    <h2>💾 Backup & Restore</h2>
+
+    <button id="backupBtn">
+        💾 Backup Data
+    </button>
+
+    <button id="restoreBtn">
+        📂 Restore Data
+    </button>
+
+    <input
+        type="file"
+        id="restoreFile"
+        accept=".json"
+        style="display:none;">
+
+</section>
 </div>
 
 <script src="script.js"></script>

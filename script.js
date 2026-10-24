@@ -45,6 +45,18 @@ function saveAttendance(){
     );
 
 }
+function saveAttendance(){
+
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+
+    console.log(
+        localStorage.getItem("attendance")
+    );
+
+}
 function loadStudentList(){
 
     const names =
@@ -109,7 +121,7 @@ function deleteStudent(student){
 
 }
 
-let attendance = {};
+let attendance =
 JSON.parse(
     localStorage.getItem("attendance")
 ) || {};
@@ -117,8 +129,11 @@ JSON.parse(
 const today =
 new Date().toISOString().split("T")[0];
 
-document.getElementById("attendanceDate").value =
+document.getElementById( "attendanceDate").value =
 today;
+
+document.getElementById("matrixMonth").value =
+today.substring(0,7);
 
 function renderStudents(){
 
@@ -141,7 +156,8 @@ function renderStudents(){
 
         const date =
 document.getElementById("attendanceDate").value;
-
+console.log("Current Date:", date);
+console.log("Attendance for Date:", attendance[date]);
 const status =
 attendance[date]?.[student] || "Present";
 
@@ -332,6 +348,438 @@ function generateMonthlyReport(){
     .innerHTML = html;
 
 }
+function generateAbsenceMatrix(){
+
+    const month =
+    document.getElementById(
+        "matrixMonth"
+    ).value;
+
+    if(!month){
+        return;
+    }
+
+    let html =
+    "<table>";
+
+    html += "<tr>";
+
+    html +=
+    "<th>Student</th>";
+
+    for(let day = 1; day <= 31; day++){
+
+        html +=
+        `<th>${String(day).padStart(2,"0")}</th>`;
+
+    }
+
+    html +=
+    "<th>Total</th>";
+
+    html +=
+    "</tr>";
+
+    students.forEach(student => {
+
+        let totalAbsent = 0;
+
+        html += `<tr>`;
+
+        html +=
+        `<td>${student}</td>`;
+
+        for(let day = 1; day <= 31; day++){
+
+            const date =
+            `${month}-${String(day).padStart(2,"0")}`;
+
+            const status =
+            attendance[date]?.[student];
+
+            if(status === "Absent"){
+
+                html += "<td>❌</td>";
+
+                totalAbsent++;
+
+            }else{
+
+               html += "<td>-</td>";
+
+            }
+
+        }
+
+        html +=
+        `<td>${totalAbsent}</td>`;
+
+        html +=
+        "</tr>";
+
+    });
+
+    html += "</table>";
+
+    document.getElementById(
+        "absenceMatrix"
+    ).innerHTML = html;
+
+}
+function generateYearlySummary(){
+
+    const months = [
+
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "01",
+        "02",
+        "03",
+        "04"
+
+    ];
+let monthlyTotals = [
+
+    0,0,0,0,0,0,0,0,0,0,0
+
+];
+
+let overallTotal = 0;
+    const labels = [
+
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+
+    ];
+
+    let html = "<table>";
+
+    html += "<tr>";
+
+    html += "<th>Student</th>";
+
+    labels.forEach(month => {
+
+        html += `<th>${month}</th>`;
+
+    });
+
+    html += "<th>Total</th>";
+
+    html += "</tr>";
+
+    students.forEach(student => {
+
+        let grandTotal = 0;
+
+        html += `<tr>`;
+
+        html += `<td>${student}</td>`;
+
+        months.forEach(month => {
+
+            let count = 0;
+
+            Object.keys(attendance).forEach(date => {
+
+                const dateMonth =
+                date.substring(5,7);
+
+                const status =
+                attendance[date]?.[student];
+
+                if(
+                    dateMonth === month &&
+                    status === "Absent"
+                ){
+
+                    count++;
+
+                }
+
+            });
+
+            grandTotal += count;
+
+            monthlyTotals[months.indexOf(month)] += count;
+
+            html += `<td>${count}</td>`;
+
+        });
+            overallTotal += grandTotal;
+
+        html += `<td><strong>${grandTotal}</strong></td>`;
+
+        html += "</tr>";
+
+    });
+
+    html += "<tr>";
+
+html += "<th>TOTALS</th>";
+
+monthlyTotals.forEach(total => {
+
+    html += `<th>${total}</th>`;
+
+});
+
+html += `<th>${overallTotal}</th>`;
+
+html += "</tr>";
+
+html += "</table>";
+
+    document.getElementById(
+        "yearlySummary"
+    ).innerHTML = html;
+
+}
+function printYearlySummary(){
+
+    generateYearlySummary();
+
+    const content =
+    document.getElementById(
+        "yearlySummary"
+    ).innerHTML;
+
+    const win =
+    window.open(
+        "",
+        "_blank"
+    );
+
+    win.document.write(`
+
+    <html>
+
+    <head>
+
+        <title>
+            Yearly Absence Summary
+        </title>
+
+        <style>
+
+            body{
+
+                font-family:Arial;
+                padding:20px;
+
+            }
+
+            table{
+
+                border-collapse:collapse;
+                width:100%;
+
+            }
+
+            th,td{
+
+                border:1px solid black;
+                padding:5px;
+                text-align:center;
+
+            }
+
+            th{
+
+                background:#2563eb;
+                color:white;
+
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+    <h1>
+        ${document.getElementById("schoolName").value}
+    </h1>
+
+    <h2>
+        YEARLY ABSENCE SUMMARY
+    </h2>
+
+    <p>
+        <strong>Section:</strong>
+        ${document.getElementById("section").value}
+    </p>
+
+    <p>
+    <strong>School Year:</strong>
+    ${document.getElementById("schoolYear").value}
+    </p>
+
+    <p>
+        <strong>Date Generated:</strong>
+        ${new Date().toLocaleDateString()}
+    </p>
+
+    <hr>
+
+    ${content}
+
+</body>
+
+    </html>
+
+    `);
+
+    win.document.close();
+
+    win.print();
+
+}
+function exportYearlySummary(){
+
+    const months = [
+
+        "06","07","08","09",
+        "10","11","12",
+        "01","02","03","04"
+
+    ];
+
+    const labels = [
+
+        "Jun","Jul","Aug","Sep",
+        "Oct","Nov","Dec",
+        "Jan","Feb","Mar","Apr"
+
+    ];
+
+    let csv = "";
+
+    csv +=
+    document.getElementById("schoolName").value +
+    "\n";
+
+    csv +=
+    "Yearly Absence Summary\n";
+
+    csv +=
+    "Section," +
+    document.getElementById("section").value +
+    "\n";
+
+    csv +=
+    "School Year," +
+    document.getElementById("schoolYear").value +
+    "\n";
+
+    csv +=
+    "Generated," +
+    new Date().toLocaleDateString() +
+    "\n\n";
+
+    csv +=
+    "Student," +
+    labels.join(",") +
+    ",Total\n";
+
+    let monthlyTotals =
+    new Array(11).fill(0);
+
+    let overallTotal = 0;
+
+    students.forEach(student => {
+
+        let row = `"${student}"`;
+
+        let grandTotal = 0;
+
+        months.forEach((month,index) => {
+
+            let count = 0;
+
+            Object.keys(attendance)
+            .forEach(date => {
+
+                const dateMonth =
+                date.substring(5,7);
+
+                const status =
+                attendance[date]?.[student];
+
+                if(
+                    dateMonth === month &&
+                    status === "Absent"
+                ){
+
+                    count++;
+
+                }
+
+            });
+
+            grandTotal += count;
+
+            monthlyTotals[index] += count;
+
+            row += `,${count}`;
+
+        });
+
+        overallTotal += grandTotal;
+
+        row += `,${grandTotal}`;
+
+        csv += row + "\n";
+
+    });
+
+    csv += "TOTALS";
+
+    monthlyTotals.forEach(total => {
+
+        csv += `,${total}`;
+
+    });
+
+    csv += `,${overallTotal}\n`;
+
+    const blob =
+    new Blob(
+        [csv],
+        {type:'text/csv'}
+    );
+
+    const url =
+    URL.createObjectURL(blob);
+
+    const a =
+    document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+    "Yearly-Absence-Summary.csv";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
 function printMonthlyReport(){
 
     const report =
@@ -1064,5 +1512,42 @@ document
     "change",
     generateStudentProfile
 );
+document
+.getElementById(
+    "generateMatrixBtn"
+)
+.addEventListener(
+    "click",
+    generateAbsenceMatrix
+);
+document
+.getElementById(
+    "generateYearlySummaryBtn"
+)
+.addEventListener(
+    "click",
+    generateYearlySummary
+);
+document
+.getElementById(
+    "printYearlySummaryBtn"
+)
+.addEventListener(
+    "click",
+    printYearlySummary
+);
+document
+.getElementById(
+    "exportYearlySummaryBtn"
+)
+.addEventListener(
+    "click",
+    exportYearlySummary
+);
+document.getElementById(
+    "schoolYear"
+).value
 renderStudents();
 updateDashboard();
+console.log("Loaded Attendance:");
+console.log(attendance);

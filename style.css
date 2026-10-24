@@ -6,8 +6,19 @@
 }
 
 body{
-    background:#f3f4f6;
+
+    margin:0;
     padding:15px;
+
+    font-family:Arial,sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #eff6ff,
+        #dbeafe
+    );
+
 }
 
 .container{
@@ -16,12 +27,25 @@ body{
 }
 
 .header{
-    background:#1e40af;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1e40af,
+        #2563eb
+    );
+
     color:white;
-    padding:15px;
-    border-radius:15px;
+
+    border-radius:20px;
+
+    padding:20px;
+
     text-align:center;
-    margin-bottom:15px;
+
+    box-shadow:
+        0 6px 15px rgba(37,99,235,.30);
+
 }
 
 .header h1{
@@ -33,11 +57,18 @@ body{
 }
 
 .card{
+
     background:white;
+
     padding:15px;
+
     border-radius:15px;
+
     margin-bottom:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.08);
+
 }
 
 label{
@@ -47,13 +78,61 @@ label{
     font-weight:bold;
 }
 
-input{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:10px;
-}
+input[type="text"],
+input[type="date"],
+input[type="month"],
+select{
 
+    width:100%;
+    min-height:55px;
+
+    padding:12px 15px;
+
+    font-size:18px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.10);
+
+    transition:0.3s;
+}
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+select:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,0.15),
+        0 4px 12px rgba(0,0,0,0.10);
+}
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+    margin-top:12px;
+
+    font-size:17px;
+    font-weight:600;
+
+    color:#111827;
+}
+::placeholder{
+
+    color:#bdbdbd;
+
+    font-style:italic;
+
+}
 .summary-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -350,4 +429,296 @@ button{
     gap:10px;
     margin-bottom:10px;
     align-items:center;
+}
+#absenceMatrix{
+    overflow-x:auto;
+}
+
+#absenceMatrix table{
+    border-collapse:collapse;
+    width:max-content;
+    min-width:100%;
+}
+
+#absenceMatrix th,
+#absenceMatrix td{
+    border:1px solid #ccc;
+    padding:5px;
+    text-align:center;
+}
+
+#absenceMatrix th{
+    background:#1e40af;
+    color:white;
+    position:sticky;
+    top:0;
+}
+
+#absenceMatrix th,
+#absenceMatrix td{
+    border:1px solid #ccc;
+    padding:6px;
+    text-align:center;
+    min-width:35px;
+}
+
+#absenceMatrix td:first-child,
+#absenceMatrix th:first-child{
+    min-width:180px;
+}
+#generateMatrixBtn{
+    width:100%;
+    min-height:55px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:15px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+    margin:10px 0 15px 0;
+}
+
+#generateMatrixBtn:hover{
+    background:#1d4ed8;
+}
+
+#generateMatrixBtn:active{
+    transform:scale(0.98);
+}
+#matrixMonth{
+    width:100%;
+    min-height:60px;
+    padding:12px 15px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    border:2px solid #2563eb;
+    border-radius:15px;
+
+    background:white;
+}
+
+#logoUpload{
+    width:100%;
+
+    padding:15px;
+
+    border:2px dashed #2563eb;
+    border-radius:15px;
+
+    background:#eff6ff;
+
+    font-size:16px;
+    font-weight:bold;
+}
+input[type="month"]{
+
+    width:100%;
+    min-height:60px;
+
+    padding:12px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    border:2px solid #2563eb;
+    border-radius:15px;
+}
+#studentProfileSelect{
+    width:100%;
+    min-height:60px;
+
+    padding:12px 15px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    border:2px solid #7c3aed;
+    border-radius:15px;
+
+    background:#faf5ff;
+
+    box-shadow:0 2px 5px rgba(124,58,237,.15);
+
+    margin-top:10px;
+}
+/* Better Inputs */
+
+input[type="text"],
+input[type="date"],
+input[type="month"],
+select{
+
+    width:100%;
+
+    min-height:55px;
+
+    padding:12px 15px;
+
+    font-size:18px;
+
+    border:2px solid #d1d5db;
+
+    border-radius:12px;
+
+    background:white;
+}
+
+/* Student Text Area */
+
+#studentInput{
+
+    width:100%;
+
+    min-height:120px;
+
+    padding:15px;
+
+    font-size:18px;
+
+    border:2px solid #d1d5db;
+
+    border-radius:12px;
+
+    resize:vertical;
+}
+
+/* All Buttons */
+
+button{
+
+    min-height:55px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    border-radius:12px;
+}
+
+/* Student Profile Dropdown */
+
+#studentProfileSelect{
+
+    border:2px solid #7c3aed;
+
+    background:#faf5ff;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .card{
+
+        padding:12px;
+
+    }
+
+    h1{
+
+        font-size:24px;
+
+    }
+
+    h2{
+
+        font-size:20px;
+
+    }
+
+}
+#yearlySummary{
+    overflow-x:auto;
+    margin-top:15px;
+}
+
+#yearlySummary table{
+    border-collapse:collapse;
+    width:max-content;
+    min-width:100%;
+}
+
+#yearlySummary th,
+#yearlySummary td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:center;
+    min-width:50px;
+}
+#yearlySummary th:first-child,
+#yearlySummary td:first-child{
+    min-width:180px;
+}
+
+#yearlySummary th{
+    background:#2563eb;
+    color:white;
+}
+
+#generateYearlySummaryBtn{
+    width:100%;
+    min-height:55px;
+    margin-top:10px;
+
+    background:#16a34a;
+    color:white;
+
+    border:none;
+    border-radius:12px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+#printYearlySummaryBtn{
+
+    width:100%;
+    min-height:55px;
+
+    margin-top:10px;
+
+    background:#f59e0b;
+    color:white;
+
+    border:none;
+    border-radius:12px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+#yearlySummary tr:last-child th{
+    background:#16a34a;
+    color:white;
+    font-weight:bold;
+}
+#exportYearlySummaryBtn{
+
+    width:100%;
+    min-height:55px;
+
+    margin-top:10px;
+
+    background:#16a34a;
+    color:white;
+
+    border:none;
+    border-radius:12px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+#exportYearlySummaryBtn:hover{
+
+    background:#15803d;
+
 }
