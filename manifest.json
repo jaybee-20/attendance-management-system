@@ -1,30 +1,18 @@
 {
   "name": "Attendance Management System",
   "short_name": "Attendance",
-  "start_url": "/",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "icons": [
-  {
-    "src": "icon.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }
-],
+  "orientation": "portrait",
   "theme_color": "#2563eb",
   "background_color": "#ffffff",
-  "id": "attendance-management-system",
-  "description": "Attendance Management System for Class Advisers. Track attendance, monitor absences, generate reports, identify students for intervention, and manage attendance records using a mobile-friendly platform.",
-  "dir": "ltr",
-  "lang": "en",
-  "orientation": "portrait",
-  "scope": "/",
-  "display_override": [
-    "window-controls-overlay",
-    "standalone",
-    "fullscreen"
-  ],
-  "categories": [
-    "education",
-    "productivity"
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }
