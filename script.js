@@ -1542,7 +1542,7 @@ function markAllPresent(){
 }
 
 document
-.getElementById("loadBtn")
+.getElementById("loadStudentsBtn")
 .addEventListener(
     "click",
     loadStudentList
@@ -1554,16 +1554,16 @@ document
     addStudent
 );
 document
-.getElementById("clearBtn")
+.getElementById("clearStudentsBtn")
 .addEventListener(
     "click",
-    ()=>{
+    () => {
 
         if(confirm(
             "Clear all students?"
         )){
 
-            students=[];
+            students = [];
 
             saveStudents();
 
