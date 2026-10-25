@@ -467,17 +467,8 @@ button{
     min-width:180px;
 }
 #generateMatrixBtn{
-    width:100%;
-    min-height:55px;
     background:#2563eb;
     color:white;
-    border:none;
-    border-radius:15px;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
-    margin:10px 0 15px 0;
 }
 
 #generateMatrixBtn:hover{
@@ -721,4 +712,125 @@ button{
 
     background:#15803d;
 
+}
+#printMatrixBtn{
+    background:#f59e0b;
+    color:white;
+}
+
+#exportMatrixBtn{
+    background:#16a34a;
+    color:white;
+}
+.action-buttons{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:10px;
+
+    margin-bottom:15px;
+}
+
+.action-buttons button{
+
+    flex:1;
+
+    min-height:50px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:white;
+
+    cursor:pointer;
+}
+#generateReportBtn,
+#generateMatrixBtn,
+#generateYearlySummaryBtn{
+
+    background:#2563eb;
+}
+
+#printReportBtn,
+#printMatrixBtn,
+#printYearlySummaryBtn{
+
+    background:#f59e0b;
+}
+
+#exportExcelBtn,
+#exportMatrixBtn,
+#exportYearlySummaryBtn{
+
+    background:#16a34a;
+}
+/* Student Management */
+
+#addStudentBtn{
+    background:#2563eb;
+    color:white;
+}
+
+#loadStudentsBtn{
+    background:#16a34a;
+    color:white;
+}
+
+#clearStudentsBtn{
+    background:#dc2626;
+    color:white;
+}
+
+/* Backup & Restore */
+
+#backupBtn{
+    background:#6366f1;
+    color:white;
+}
+
+#restoreBtn{
+    background:#0891b2;
+    color:white;
+}
+.action-buttons button{
+
+    flex:1 1 0;
+    width:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    min-height:50px;
+
+    font-size:16px;
+    font-weight:bold;
+
+    border:none;
+    border-radius:12px;
+
+    color:white;
+    cursor:pointer;
+}
+.action-buttons button{
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.10);
+}
+.action-buttons button{
+
+    transition:.2s;
+}
+
+.action-buttons button:active{
+
+    transform:scale(.98);
 }

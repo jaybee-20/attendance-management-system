@@ -426,6 +426,179 @@ function generateAbsenceMatrix(){
     ).innerHTML = html;
 
 }
+function printMatrix(){
+
+    generateAbsenceMatrix();
+
+    const content =
+    document.getElementById(
+        "absenceMatrix"
+    ).innerHTML;
+
+    const win =
+    window.open("", "_blank");
+
+    win.document.write(`
+
+    <html>
+
+    <head>
+
+        <title>
+            Monthly Absence Matrix
+        </title>
+
+        <style>
+
+            body{
+                font-family:Arial;
+                padding:20px;
+            }
+
+            table{
+                border-collapse:collapse;
+                width:100%;
+            }
+
+            th,td{
+                border:1px solid black;
+                padding:5px;
+                text-align:center;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <h2>
+            ${document.getElementById("schoolName").value}
+        </h2>
+
+        <h3>
+            MONTHLY ABSENCE MATRIX
+        </h3>
+
+        <p>
+            Section:
+            ${document.getElementById("section").value}
+        </p>
+
+        <p>
+            School Year:
+            ${document.getElementById("schoolYear").value}
+        </p>
+
+        ${content}
+
+    </body>
+
+    </html>
+
+    `);
+
+    win.document.close();
+
+    win.print();
+
+}
+function exportMatrix(){
+
+    const month =
+    document.getElementById(
+        "matrixMonth"
+    ).value;
+
+    if(!month) return;
+
+    let csv = "";
+
+    csv +=
+    document.getElementById("schoolName").value +
+    "\n";
+
+    csv +=
+    "Monthly Absence Matrix\n";
+
+    csv +=
+    "Section," +
+    document.getElementById("section").value +
+    "\n";
+
+    csv +=
+    "School Year," +
+    document.getElementById("schoolYear").value +
+    "\n\n";
+
+    csv += "Student,";
+
+    for(let day=1; day<=31; day++){
+
+        csv +=
+        String(day).padStart(2,"0") + ",";
+
+    }
+
+    csv += "Total\n";
+
+    students.forEach(student=>{
+
+        let total = 0;
+
+        let row =
+        `"${student}",`;
+
+        for(let day=1; day<=31; day++){
+
+            const date =
+            `${month}-${String(day).padStart(2,"0")}`;
+
+            const status =
+            attendance[date]?.[student];
+
+            if(status === "Absent"){
+
+                row += "A,";
+
+                total++;
+
+            }else{
+
+                row += ",";
+
+            }
+
+        }
+
+        row += total;
+
+        csv += row + "\n";
+
+    });
+
+    const blob =
+    new Blob(
+        [csv],
+        {type:'text/csv'}
+    );
+
+    const url =
+    URL.createObjectURL(blob);
+
+    const a =
+    document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+    "Monthly-Absence-Matrix.csv";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
 function generateYearlySummary(){
 
     const months = [
@@ -1530,6 +1703,24 @@ document
 );
 document
 .getElementById(
+    "printMatrixBtn"
+)
+.addEventListener(
+    "click",
+    printMatrix
+);
+
+document
+.getElementById(
+    "exportMatrixBtn"
+)
+.addEventListener(
+    "click",
+    exportMatrix
+);
+
+document
+.getElementById(
     "printYearlySummaryBtn"
 )
 .addEventListener(
@@ -1544,27 +1735,32 @@ document
     "click",
     exportYearlySummary
 );
-document.getElementById(
-    "schoolYear"
-).value
 renderStudents();
 updateDashboard();
 console.log("Loaded Attendance:");
 console.log(attendance);
-if(
-    "serviceWorker" in navigator
-){
+if ("serviceWorker" in navigator) {
 
-    navigator
-    .serviceWorker
-    .register(
-        "service-worker.js"
-    )
-    .then(() => {
+    window.addEventListener("load", () => {
 
-        console.log(
-            "Service Worker Registered"
-        );
+        navigator.serviceWorker
+        .register("./service-worker.js")
+        .then(registration => {
+
+            console.log(
+                "Service Worker Registered",
+                registration
+            );
+
+        })
+        .catch(error => {
+
+            console.error(
+                "Service Worker Error:",
+                error
+            );
+
+        });
 
     });
 

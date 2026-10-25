@@ -168,18 +168,18 @@
     id="newStudent"
     placeholder="Enter student name">
 
-<button id="addStudentBtn">
-    Add Student
-</button>
+<div class="action-buttons">
 
-<div class="button-group">
-
-    <button id="loadBtn">
-        Load Student List
+    <button id="addStudentBtn">
+        ➕ Add
     </button>
 
-    <button id="clearBtn">
-        Clear List
+    <button id="loadStudentsBtn">
+        📂 Load
+    </button>
+
+    <button id="clearStudentsBtn">
+        🗑 Clear
     </button>
 
 </div>
@@ -193,7 +193,7 @@
 
 <section class="card">
 
-    <h2>Students</h2>
+    <h2>👨‍🎓 Students</h2>
 
     <div id="studentList"></div>
 
@@ -201,19 +201,23 @@
 
 <section class="card">
 
-    <h2>Monthly Attendance Report</h2>
+    <h2>📄 Monthly Attendance Report</h2>
+
+    <div class="action-buttons">
 
     <button id="generateReportBtn">
-        Generate Monthly Report
+        📊 View
     </button>
 
-<button id="printReportBtn">
-    🖨 Print Monthly Report
-</button>
+    <button id="printReportBtn">
+        🖨 Print
+    </button>
 
-<button id="exportExcelBtn">
-    📊 Export Excel Report
-</button>
+    <button id="exportExcelBtn">
+        📥 Export
+    </button>
+
+</div>
 
     <div id="monthlyReport"></div>
 
@@ -226,9 +230,21 @@
         type="month"
         id="matrixMonth">
 
+    <div class="action-buttons">
+
     <button id="generateMatrixBtn">
-    📊 View Monthly Absence Matrix
-</button>
+        📊 View
+    </button>
+
+    <button id="printMatrixBtn">
+        🖨 Print
+    </button>
+
+    <button id="exportMatrixBtn">
+        📥 Export
+    </button>
+
+</div>
 
     <div id="absenceMatrix"></div>
 
@@ -237,18 +253,21 @@
 
     <h2>📊 Yearly Absence Summary</h2>
 
+    <div class="action-buttons">
+
     <button id="generateYearlySummaryBtn">
-        📊 Generate Yearly Summary
+        📊 View
     </button>
 
     <button id="printYearlySummaryBtn">
-        🖨 Print Yearly Summary
+        🖨 Print
     </button>
 
     <button id="exportYearlySummaryBtn">
-    📊 Export Yearly Summary
+        📥 Export
     </button>
 
+</div>
     <div id="yearlySummary"></div>
 
 </section>
@@ -280,13 +299,17 @@
 
     <h2>💾 Backup & Restore</h2>
 
+    <div class="action-buttons">
+
     <button id="backupBtn">
-        💾 Backup Data
+        💾 Backup
     </button>
 
     <button id="restoreBtn">
-        📂 Restore Data
+        📥 Restore
     </button>
+
+</div>
 
     <input
         type="file"
