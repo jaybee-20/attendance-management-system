@@ -1,3 +1,4 @@
+alert("SCRIPT STARTED");
 let students =
 JSON.parse(
 localStorage.getItem("students")
@@ -1746,3 +1747,4 @@ if ("serviceWorker" in navigator) {
     });
 
 }
+alert("SCRIPT FINISHED");
