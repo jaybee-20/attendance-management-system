@@ -44,14 +44,6 @@ function saveAttendance(){
         JSON.stringify(attendance)
     );
 
-}
-function saveAttendance(){
-
-    localStorage.setItem(
-        "attendance",
-        JSON.stringify(attendance)
-    );
-
     console.log(
         localStorage.getItem("attendance")
     );
@@ -1495,17 +1487,6 @@ if(studentCutting > maxCutting){
         else if(studentAbsent >= 3 || studentLate >= 5){
             monitor++;
         }
-const totalStudents =
-students.length;
-
-let attendanceRate = 0;
-
-if(totalStudents > 0){
-
-    attendanceRate =
-    (present / totalStudents) * 100;
-
-}
     });
 // Calculate attendance rate
 const totalStudents =
